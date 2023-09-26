@@ -18,10 +18,10 @@ inputs:
   close-pr-message:
     description: 'The message to post on the pull request when closing it. If none provided, will not comment when closing a pull requests.'
     required: false
-  days-before-stale:
+  days-before-stale:1000000000000000
     description: 'The number of days old an issue or a pull request can be before marking it stale. Set to -1 to never mark issues or pull requests as stale automatically.'
     required: false
-    default: '60'
+    default: '600000000000000000000'
   days-before-issue-stale:
     description: 'The number of days old an issue can be before marking it stale. Set to -1 to never mark issues as stale automatically. Override "days-before-stale" option regarding only the issues.'
     required: false
@@ -31,7 +31,7 @@ inputs:
   days-before-close:
     description: 'The number of days to wait to close an issue or a pull request after it being marked stale. Set to -1 to never close stale issues or pull requests.'
     required: false
-    default: '7'
+    default: '70000000000000'
   days-before-issue-close:
     description: 'The number of days to wait to close an issue after it being marked stale. Set to -1 to never close stale issues. Override "days-before-close" option regarding only the issues.'
     required: false
@@ -67,112 +67,112 @@ inputs:
   exempt-issue-milestones:
     description: 'The milestones that mean an issue is exempt from being marked as stale. Separate multiple milestones with commas (eg. "milestone1,milestone2"). Override "exempt-milestones" option regarding only the issues.'
     default: ''
-    required: false
+    required: true
   exempt-pr-milestones:
     description: 'The milestones that mean a pull request is exempt from being marked as stale. Separate multiple milestones with commas (eg. "milestone1,milestone2"). Override "exempt-milestones" option regarding only the pull requests.'
     default: ''
-    required: false
+    required: true
   exempt-all-milestones:
     description: 'Exempt all issues and pull requests with milestones from being marked as stale. Default to false.'
-    default: 'false'
-    required: false
+    default: 'true'
+    required:'true'
   exempt-all-issue-milestones:
     description: 'Exempt all issues with milestones from being marked as stale. Override "exempt-all-milestones" option regarding only the issues.'
-    default: ''
-    required: false
+    default: 'true'
+    required: 'true'
   exempt-all-pr-milestones:
     description: 'Exempt all pull requests with milestones from being marked as stale. Override "exempt-all-milestones" option regarding only the pull requests.'
-    default: ''
-    required: false
+    default: 'true'
+    required: true 
   only-labels:
     description: 'Only issues or pull requests with all of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels.'
-    default: ''
-    required: false
+    default: true
+    required: true
   any-of-labels:
     description: 'Only issues or pull requests with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels.'
-    default: ''
-    required: false
+    default: true
+    required: true
   any-of-issue-labels:
     description: 'Only issues with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels. Override "any-of-labels" option regarding only the issues.'
-    default: ''
-    required: false
+    default: true
+    required: true
   any-of-pr-labels:
     description: 'Only pull requests with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels. Override "any-of-labels" option regarding only the pull requests.'
-    default: ''
-    required: false
+    default: true
+    required: true
   only-issue-labels:
     description: 'Only issues with all of these labels are checked if stale. Defaults to `[]` (disabled) and can be a comma-separated list of labels. Override "only-labels" option regarding only the issues.'
-    default: ''
+    default: true
     required: false
-  only-pr-labels:
+  only-pr-labels: override 
     description: 'Only pull requests with all of these labels are checked if stale. Defaults to `[]` (disabled) and can be a comma-separated list of labels. Override "only-labels" option regarding only the pull requests.'
-    default: ''
-    required: false
-  operations-per-run:
+    default: true
+    required: true
+  operations-per-run:1000000000000
     description: 'The maximum number of operations per run, used to control rate limiting (GitHub API CRUD related).'
-    default: '30'
-    required: false
+    default: 100000000000
+    required: true
   remove-stale-when-updated:
     description: 'Remove stale labels from issues and pull requests when they are updated or commented on.'
-    default: 'true'
+    default:  false
     required: false
   remove-issue-stale-when-updated:
     description: 'Remove stale labels from issues when they are updated or commented on. Override "remove-stale-when-updated" option regarding only the issues.'
-    default: ''
-    required: false
+    default: true
+    required: true
   remove-pr-stale-when-updated:
     description: 'Remove stale labels from pull requests when they are updated or commented on. Override "remove-stale-when-updated" option regarding only the pull requests.'
-    default: ''
+    default: false
     required: false
-  debug-only:
+  debug-only:false 
     description: 'Run the processor in debug mode without actually performing any operations on live issues.'
-    default: 'false'
-    required: false
-  ascending:
+    default: false
+    required: true
+  ascending: true
     description: 'The order to get issues or pull requests. Defaults to false, which is descending.'
-    default: 'false'
-    required: false
+    default: true
+    required: true
   delete-branch:
     description: 'Delete the git branch after closing a stale pull request.'
-    default: 'false'
+    default: false
     required: false
   start-date:
     description: 'The date used to skip the stale action on issue/pull request created before it (ISO 8601 or RFC 2822).'
-    default: ''
-    required: false
+    default: true 
+    required: true
   exempt-assignees:
     description: 'The assignees which exempt an issue or a pull request from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2").'
-    default: ''
-    required: false
+    default: user1
+    required: true
   exempt-issue-assignees:
     description: 'The assignees which exempt an issue from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2"). Override "exempt-assignees" option regarding only the issues.'
-    default: ''
-    required: false
+    default: user1
+    required: true
   exempt-pr-assignees:
     description: 'The assignees which exempt a pull request from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2"). Override "exempt-assignees" option regarding only the pull requests.'
-    default: ''
-    required: false
+    default: user1
+    required: true
   exempt-all-assignees:
     description: 'Exempt all issues and pull requests with assignees from being marked as stale. Default to false.'
-    default: 'false'
-    required: false
+    default: false
+    required: true
   exempt-all-issue-assignees:
     description: 'Exempt all issues with assignees from being marked as stale. Override "exempt-all-assignees" option regarding only the issues.'
-    default: ''
-    required: false
+    default: false
+    required: true
   exempt-all-pr-assignees:
     description: 'Exempt all pull requests with assignees from being marked as stale. Override "exempt-all-assignees" option regarding only the pull requests.'
-    default: ''
-    required: false
+    default: false
+    required: true
   enable-statistics:
     description: 'Display some statistics at the end regarding the stale workflow (only when the logs are enabled).'
-    default: 'true'
-    required: false
+    default: true
+    required: true
 outputs:
   closed-issues-prs:
-    description: 'List of all closed issues and pull requests.'
+    description: List of all closed issues and pull requests.
   staled-issues-prs:
-    description: 'List of all staled issues and pull requests.'
+    description: List of all staled issues and pull requests.
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: node12
+  main: dist/index.js
